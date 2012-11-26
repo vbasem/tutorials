@@ -1,5 +1,11 @@
 package shared;
 
+/**
+ * 
+ * Since Phone class implements Serializable as well,
+ * this class wont have any problems
+ *
+ */
 public class CustomerWithPhone extends Customer {
 
     private Phone phone;

@@ -10,6 +10,12 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
+
+/**
+ * 
+ * Some methods and static fields to aid in example serialization (helpers)
+ *
+ */
 public class SerializationHelper
 {
 	public static final String SERIALIZATION_PATH = "c:\\temp\\object";

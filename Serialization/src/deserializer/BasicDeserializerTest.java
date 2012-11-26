@@ -13,6 +13,12 @@ import shared.Phone;
 import shared.SerializationHelper;
 import shared.ancestor.ChildWithSerialization;
 
+/**
+ * 
+ * This class includes all tests that compliment the serialization tests.
+ * Refer to the tests there to see which method corresponds to which test.
+ *
+ */
 public class BasicDeserializerTest {
 
     @Test

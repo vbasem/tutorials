@@ -5,6 +5,14 @@ import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
 
+/**
+ * 
+ * This is the alternative to serializeable
+ *
+ * Externalizable requires the user to specify how fields are serialized
+ * or deserialized
+ *
+ */
 public class Alternative implements Externalizable {
 
     @Override

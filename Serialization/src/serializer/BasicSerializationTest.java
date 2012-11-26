@@ -1,16 +1,13 @@
 package serializer;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import static org.junit.Assert.assertEquals;
+
 import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
 import java.util.Scanner;
 
 import org.junit.Test;
-import org.junit.experimental.categories.Categories.ExcludeCategory;
-import org.junit.experimental.theories.Theory;
+
+import deserializer.BasicDeserializerTest;
 
 import shared.Customer;
 import shared.CustomerWithEmail;
@@ -20,10 +17,21 @@ import shared.Phone;
 import shared.SerializationHelper;
 import shared.ancestor.ChildWithSerialization;
 
-import static org.junit.Assert.*;
 
+/**
+ * 
+ * This class contains the serialization part of the examples and tests
+ * Each test is paired with its matching deserialization test
+ * in {@link BasicDeserializerTest}
+ *
+ */
 public class BasicSerializationTest {
 
+    /**
+     * serialzie the POJO Customer object
+     * run testDeserializingBasicObject to see it working
+     * @throws IOException
+     */
     @Test
     public void testSerializationSimpleObject() throws IOException {
 
@@ -38,6 +46,11 @@ public class BasicSerializationTest {
 	System.out.println("serialized customer");
     }
     
+    /**
+     * show how static fields are not serialized.
+     * Run testStatisFieldDeserialization to see the result of deserialization
+     * @throws IOException
+     */
     @Test
     public void testStaticFieldSerialization() throws IOException {
 	// new customer
@@ -50,6 +63,10 @@ public class BasicSerializationTest {
 	System.out.println("serialized customer");
     }
     
+    /**
+     * Show how deserializing no serializable objects throw exception
+     * @throws IOException
+     */
     @Test 
     public void testSerializationChildObjectsEmail() throws IOException {
 	// new email customer
@@ -62,6 +79,11 @@ public class BasicSerializationTest {
 	
     }
     
+    /**
+     * Use of transient keyword to bypass non serializable fields
+     * run testTransientDeserialization to deserialze it
+     * @throws IOException
+     */
     @Test 
     public void testTransientSerialization() throws IOException {
 	CustomerWithPhoneAndEmail c = new CustomerWithPhoneAndEmail();
@@ -74,6 +96,14 @@ public class BasicSerializationTest {
 	
     }
     
+    /**
+     * A constructor is no called on deserialization of a serializable object,
+     * however a parent which does not implement Serializable will have its 
+     * constructor called 
+     * 
+     * run testParentChildDeserialization to see the messages from the constructor
+     * @throws IOException
+     */
     @Test
     public void testParentChildSerialization() throws IOException {
 	ChildWithSerialization child  = new ChildWithSerialization();
@@ -81,6 +111,19 @@ public class BasicSerializationTest {
 	SerializationHelper.serializeObject(child);
     }
 
+
+    /**
+     * This example shows how serialization caches objects
+     * and changes to objects are not reflected in deserialization, unless
+     * the serializer is rested. 
+     * 
+     * run this example once while reset is commented and once uncommented.
+     * 
+     * run main method on deserialization side to see it at work.
+     * @param args
+     * @throws IOException
+     * @throws InterruptedException
+     */
     public static void main(String[] args) throws IOException,
 	    InterruptedException {
 	testMutatingSerialiyation();
@@ -105,7 +148,11 @@ public class BasicSerializationTest {
 	c.setSurname("Blony");
 	
 	
-	// reset
+	/**
+	 * uncomment this line to see how resetting will allow us
+	 * to read changes / updates
+	 * 
+	 */
 	// resetSerializer();
 	
 	serialize(c);

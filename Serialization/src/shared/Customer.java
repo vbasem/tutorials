@@ -2,9 +2,19 @@ package shared;
 
 import java.io.Serializable;
 
+
+/**
+ * 
+ * Basic serializable object
+ *
+ */
 public class Customer implements Serializable {
+    
+    
     /**
-     * 
+     *  a serialversionUID is used to identify a class during ser/des.
+     *  Without it, a change in the class will cause deserialization of previous
+     *  version to fail.
      */
    // private static final long serialVersionUID = 13490328403221L;
     

@@ -1,5 +1,11 @@
 package shared;
 
+/**
+ * 
+ * Serializing this class will fail, since Email is not
+ * serializable and is not marked as transient
+ *
+ */
 public class CustomerWithEmail extends Customer {
     
 	private Email email;

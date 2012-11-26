@@ -2,6 +2,12 @@ package shared;
 
 import java.io.Serializable;
 
+
+/**
+ * 
+ * This class is serializable and is used as a field in customer class
+ *
+ */
 public class Phone implements Serializable
 {
 	private long phoneNumber;

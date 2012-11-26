@@ -1,5 +1,10 @@
 package shared;
 
+/**
+ * 
+ * This class is not Serializable
+ *
+ */
 public class Email {
     private String email;
 
